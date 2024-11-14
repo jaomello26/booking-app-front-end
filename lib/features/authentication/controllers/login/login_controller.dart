@@ -1,5 +1,6 @@
 import 'package:apps/data/services/authentication_service.dart';
 import 'package:apps/utils/constants/image_strings.dart';
+import 'package:apps/utils/constants/text_strings.dart';
 import 'package:apps/utils/helpers/network_manager.dart';
 import 'package:apps/utils/popups/full_screen_loader.dart';
 import 'package:apps/utils/popups/loaders.dart';
@@ -24,7 +25,7 @@ class LoginController extends GetxController {
   Future<void> login() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(Texts.loginLoading, TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -49,12 +50,12 @@ class LoginController extends GetxController {
       await _authService.login(data);
 
       // Redirect
-      TLoaders.successSnackBar(title: 'Success', message: 'Successfully logged in');
-      //AuthenticationRepository.instance.screenRedirect();
+      TLoaders.successSnackBar(title: Texts.successAuthTitle, message: Texts.successLoginMessage);
+      Get.offAllNamed('/home');
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Login Failed', message: e.toString());
+      TLoaders.errorSnackBar(title: Texts.failLoginTitle, message: Texts.failLoginMessage);
     } finally {
-      TFullScreenLoader.stopLoading();
+      FullScreenLoader.stopLoading();
     }
   }
 }

@@ -18,7 +18,7 @@ class SocialButtons extends StatelessWidget {
             icon: const Image(
               width: Sizes.iconMd,
               height: Sizes.iconMd,
-              image: AssetImage(TImages.google),
+              image: AssetImage(Images.google),
             ),
           ),
         ),
@@ -30,7 +30,7 @@ class SocialButtons extends StatelessWidget {
             icon: const Image(
               width: Sizes.iconMd,
               height: Sizes.iconMd,
-              image: AssetImage(TImages.facebook),
+              image: AssetImage(Images.facebook),
             ),
           ),
         ),

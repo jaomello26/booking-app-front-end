@@ -38,6 +38,7 @@ class UserModel {
       'last_name': lastName,
       'phone_number': phoneNumber,
       'email': email,
+      'password': password,
       'created_at': createdAt,
       'updated_at': updatedAt,
     };

@@ -33,7 +33,7 @@ class LoginForm extends StatelessWidget {
             Obx(
               () => TextFormField(
                 controller: controller.password,
-                validator: (value) => Validator.validateEmptyText('Password', value),
+                validator: (value) => Validator.validateEmptyText(Texts.password, value),
                 obscureText: controller.hidePassword.value,
                 decoration: InputDecoration(
                   labelText: Texts.password,

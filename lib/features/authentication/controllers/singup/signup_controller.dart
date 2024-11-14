@@ -2,6 +2,7 @@ import 'package:apps/data/services/authentication_service.dart';
 import 'package:apps/features/authentication/models/user_model.dart';
 import 'package:apps/features/home/home.dart';
 import 'package:apps/utils/constants/image_strings.dart';
+import 'package:apps/utils/constants/text_strings.dart';
 import 'package:apps/utils/helpers/network_manager.dart';
 import 'package:apps/utils/popups/full_screen_loader.dart';
 import 'package:apps/utils/popups/loaders.dart';
@@ -26,7 +27,7 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       // Start Loading
-      TFullScreenLoader.openLoadingDialog('We are processing your information...', TImages.docerAnimation);
+      FullScreenLoader.openLoadingDialog(Texts.singupLoading, TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -38,8 +39,8 @@ class SignupController extends GetxController {
       // Privacy Policy Check
       if (!privacyPolicy.value) {
         TLoaders.warningSnackBar(
-          title: 'Accept Privacy Policy',
-          message: 'In order to create account, you must to read and accept the Privacy Policy & Terms of Use.',
+          title: Texts.acceptPrivacyPoliceTitle,
+          message: Texts.acceptPrivacyPoliceMessage,
         );
         return;
       }
@@ -60,11 +61,11 @@ class SignupController extends GetxController {
       // Navigate to the next screen or home
       Get.offAll(() => const HomeScreen());
 
-      TLoaders.successSnackBar(title: 'Success', message: 'Successfully registered');
+      TLoaders.successSnackBar(title: Texts.successAuthTitle, message: Texts.successSignupMessage);
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Registration Failed', message: e.toString());
+      TLoaders.errorSnackBar(title: Texts.failSignupTitle, message: Texts.failSignupMessage);
     } finally {
-      TFullScreenLoader.stopLoading();
+      FullScreenLoader.stopLoading();
     }
   }
 }
